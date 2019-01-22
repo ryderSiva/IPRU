@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><img style="margin-top: 5px;" src="assets/icon/1533272453567.png"/></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+              <ion-input placeholder="Investment"></ion-input>
+          </ion-col>
+          <ion-col>
+              <ion-select style="margin-left: 55%;padding: 13px 8px 13px 0px;" [(ngModel)]="investment">
+                  <ion-option value="0">Monthly</ion-option>
+                  <ion-option value="1">Half Yearly</ion-option>
+                  <ion-option value="2">Yearly</ion-option>
+                </ion-select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-input placeholder="Interest(%)"></ion-input>
+            </ion-col>
+            <ion-col>
+                <ion-select style="margin-left: 55%;padding: 13px 8px 13px 0px;" [(ngModel)]="interest">
+                    <ion-option value="0">Monthly</ion-option>
+                    <ion-option value="1">Half Yearly</ion-option>
+                    <ion-option value="2">Yearly</ion-option>
+                  </ion-select>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+              <ion-col>
+                  <ion-input placeholder="Period"></ion-input>
+              </ion-col>
+              <ion-col>
+                  <ion-select [(ngModel)]="period">
+                      <ion-option value="0">Years</ion-option>
+                      <ion-option value="1">Month</ion-option>                      
+                    </ion-select>
+              </ion-col>
+
+              <ion-col>
+                  <ion-select placeholder="Compounding" [(ngModel)]="compounding">
+                      <ion-option value="0">Monthly</ion-option>
+                      <ion-option value="1">Half Yearly</ion-option>
+                      <ion-option value="2">Yearly</ion-option>                     
+                  </ion-select>
+              </ion-col>
+            </ion-row>
+      </ion-grid>
+      <button ion-button full outline>Calculate</button>
+      
+
+</ion-content>
