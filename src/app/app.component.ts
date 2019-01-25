@@ -13,9 +13,9 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
-
+  activatePage:any;
   pages: Array<{title: string, component: any}>;
-
+  shownGroup = null;
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
@@ -24,6 +24,8 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage }
     ];
+
+    this.activatePage=this.pages[0];
 
   }
 
@@ -40,5 +42,21 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+    this.activatePage=page;
+  }
+
+  toggleGroup(group) {
+    if (this.isGroupShown(group)) {
+        this.shownGroup = null;
+    } else {
+        this.shownGroup = group;
+    }
+  }
+  isGroupShown(group) {
+      return this.shownGroup === group;
+  }
+
+  checkActivate(page){
+     return page=this.activatePage;
   }
 }
