@@ -1,0 +1,133 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Life Time Classic</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding style="background: -webkit-linear-gradient(left, #ae2b30 0%,#f26522 100%);
+background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);">
+    <ion-grid style="color: white;font-size: 15px">
+
+
+        <ion-row>
+            <ion-col col-8>
+                <h4>Premium</h4>
+                <ion-input style="outline: auto;width: 195px;" [(ngModel)]="premiumInput" (input)="premiumEnter($event)"></ion-input>
+            </ion-col>
+            <ion-col style="margin-top: 31px;">
+                <ion-select text-wrap style="margin-left: -17px;
+                width: 113px;outline: auto;max-width: 200%;padding: 10px 8px 15px 16px;" (ionChange)="premiumSelect($event)" [(ngModel)]="premiumSelected">
+                    <ion-option value="12">Monthly</ion-option>
+                    <ion-option value="2">Half Yearly</ion-option>
+                    <ion-option value="1">Yearly</ion-option>
+                </ion-select>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-8>
+                <h4>Premium Paying Term</h4>
+                <ion-select style="outline: auto;max-width: 200%;width: 309px;padding: 10px 8px 15px 16px;" (ionChange)="payingTermSelect($event)" [(ngModel)]="payingTerm">
+                        <ion-option value="5">Five</ion-option>
+                        <ion-option value="7">Seven</ion-option>
+                        <ion-option value="10">Ten</ion-option>
+               </ion-select>
+                <!-- <ion-input style="outline: auto;width: 212px;"></ion-input> -->
+            </ion-col>
+            <!-- <ion-col style="margin-top: 31px;">
+                <ion-select style="outline: auto;max-width: 100%;padding: 10px 8px 15px 16px;" [(ngModel)]="payingTerm">
+                    <ion-option value="0">Five</ion-option>
+                    <ion-option value="1">Seven</ion-option>
+                    <ion-option value="2">Ten</ion-option>
+                </ion-select>
+            </ion-col> -->
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-8>
+                <h4>Policy Term</h4>
+                <ion-select style="outline: auto;max-width: 200%;width: 309px;padding: 10px 8px 15px 16px;" [(ngModel)]="policyTerm" (ionChange)="policyTermSelect($event)">
+                        <ion-option value="10">10</ion-option>
+                        <ion-option value="15">15</ion-option>
+                        <ion-option value="20">20</ion-option>
+                        <ion-option value="25">25</ion-option>
+                        <ion-option value="30">30</ion-option>
+                    </ion-select>
+                <!-- <ion-input style="outline: auto;width: 212px;"></ion-input> -->
+            </ion-col>
+            <!-- <ion-col style="margin-top: 31px;">
+                <ion-select style="outline: auto;max-width: 100%;padding: 10px 8px 15px 16px;" [(ngModel)]="policyTerm">
+                    <ion-option value="0">10</ion-option>
+                    <ion-option value="1">15</ion-option>
+                    <ion-option value="2">20</ion-option>
+                    <ion-option value="2">25</ion-option>
+                    <ion-option value="2">30</ion-option>
+                </ion-select>
+            </ion-col> -->
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-8>
+                <h4>Rate of Return</h4>
+                <ion-input style="outline: auto;width: 309px;"></ion-input>
+            </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-8>
+                <h4>Loyalty Additions</h4>
+                <ion-input style="outline: auto;width: 309px;" [readonly]="isReadonly" [(ngModel)]="loyaltyAdditions"></ion-input>
+            </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-8>
+                <h4>Wealth Booster</h4>
+                <ion-input style="outline: auto;width: 309px;" [readonly]="isReadonly" [(ngModel)]="wealthBooster"></ion-input>
+            </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+                <ion-col col-8>
+                    <h4>Sum Assured</h4>
+                    <ion-input style="outline: auto;width: 309px;" [readonly]="isReadonly" [(ngModel)]="sumAssured"></ion-input>
+                </ion-col>
+    
+            </ion-row>
+
+        <ion-row>
+            <ion-col col-8>
+                <h4>Premium Allocations Charges</h4>
+                <ion-textarea style="outline: auto;width: 309px;height: 50px;" [readonly]="isReadonly" [(ngModel)]="premiumAllocationCharges"></ion-textarea>
+            </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-8>
+                <h4>Policy Admin Charges</h4>
+                <ion-input [readonly]="isReadonly" [(ngModel)]="adminCharges" style="outline: auto;width: 309px;"></ion-input>
+            </ion-col>
+
+        </ion-row>
+
+        <ion-row>
+                <ion-col col-8>
+                    <h4>Partial Withdrawals</h4>
+                    <ion-input style="outline: auto;width: 309px;"></ion-input>
+                </ion-col>
+    
+            </ion-row>
+    </ion-grid>
+
+    <button style="color: white;border-color:white;width: 49%;margin-left: 88px;border-right-width: 1px;border-left-width: 1px;margin-top: 22px;" ion-button full outline>Click to Calculate</button>
+     
+
+
+</ion-content>

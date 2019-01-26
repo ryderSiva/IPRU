@@ -4,7 +4,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+
+import { LifeTimeClassicPage } from '../pages/life_time_classic/life_time_classic';
+import { EliteLifeSuperPage } from '../pages/elite_life_super/elite_life_super';
+import { EliteWealthSuperPage } from '../pages/elite_wealth_super/elite_wealth_super';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,8 +24,9 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Life Time Classic', component: LifeTimeClassicPage },
+      { title: 'Elite Life Super', component: EliteLifeSuperPage },
+      { title: 'Elite Wealth Super', component: EliteWealthSuperPage }
     ];
 
     this.activatePage=this.pages[0];
