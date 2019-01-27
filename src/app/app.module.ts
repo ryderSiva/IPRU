@@ -7,6 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { EliteLifeSuperPage } from '../pages/elite_life_super/elite_life_super';
 import { LifeTimeClassicPage } from '../pages/life_time_classic/life_time_classic';
 import { EliteWealthSuperPage } from '../pages/elite_wealth_super/elite_wealth_super';
+import { BenifitOfIllustrationsPage } from '../pages/benifit-of-illustrations/benifit-of-illustrations';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -17,6 +19,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LifeTimeClassicPage,
     EliteLifeSuperPage,
     EliteWealthSuperPage,
+    BenifitOfIllustrationsPage,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LifeTimeClassicPage,
     EliteLifeSuperPage,
     EliteWealthSuperPage,
+    BenifitOfIllustrationsPage,
   
   ],
   providers: [

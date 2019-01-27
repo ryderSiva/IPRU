@@ -1,0 +1,50 @@
+page-benifit-of-illustrations {
+    .header .col {
+        background-color:lightgrey;
+    }
+    
+    .col {
+        border: solid 1px grey;
+        border-bottom-style: none;
+        border-right-style: none;
+    }
+    
+    .col:last-child {
+        border-right: solid 1px grey;
+    }
+    
+    .row:last-child .col {
+        border-bottom: solid 1px grey;
+    }
+
+    .wide-as-needed {
+        overflow: scroll;
+        white-space: nowrap;
+      }
+
+      ion-scroll .scroll-content {
+      position: fixed!important;
+      overflow: auto!important;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+        background: -webkit-linear-gradient(left, #ae2b30 0%,#f26522 100%);
+background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);;
+      }
+
+
+
+     
+}

@@ -1,0 +1,106 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>BENIFIT OF ILLUSTRATIONS</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content style="background: -webkit-linear-gradient(left, #ae2b30 0%,#f26522 100%);
+background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);">
+  <ion-scroll direction="x" class="wide-as-needed">
+    <table style="color: white">
+      <tr text-wrap>
+        <th style="border: 2px solid;">POLICY YEARS</th>
+        <th style="border: 2px solid;">PREMIUM</th>
+        <th style="border: 2px solid;">PREMIUM ALLOCATION CHARGES</th>
+        <th style="border: 2px solid;">ADMIN CHARGES</th>
+        <th style="border: 2px solid;">CUMULATIVE INVESTIBLE PORTION GROWTH </th>
+        <th style="border: 2px solid;">LOYALTY ADDITION</th>
+        <th style="border: 2px solid;">WEALTH BOOSTER</th>
+        <th style="border: 2px solid;">FUND VALUE AT THE END OF YEAR</th>
+        <th style="border: 2px solid;">PARTIAL WITHDRAWL</th>
+        <th style="border: 2px solid;">SUM ASSURED</th>
+      </tr>
+      <tr *ngFor="let policy of this.testVal">
+        <td>
+          {{policy.policy}}
+        </td>
+        <td>
+            {{policy.perimum}}
+
+        </td>
+        <td>
+            {{policy.allocationCharges}}
+
+        </td>
+        <td>
+            {{policy.allocationCharges}}
+
+        </td>
+        <td>
+            {{policy.allocationCharges}}
+
+        </td>
+        <td>
+            {{policy.allocationCharges}}
+          </td>
+        <td>
+            {{policy.allocationCharges}}
+
+        </td>
+        <td>
+            {{policy.allocationCharges}}
+
+        </td>
+        <td>
+            {{policy.allocationCharges}}
+
+        </td>
+        <td>
+            {{policy.allocationCharges}}
+
+        </td>
+
+      </tr>
+      <!-- <tr>
+            <td>Alfreds Futterkiste</td>
+            <td>Maria Anders</td>
+            <td>Germany</td>
+            <td>Alfreds Futterkiste</td>
+            <td>Maria Anders</td>
+            <td>Germany</td>
+            <td>Alfreds Futterkiste</td>
+            <td>Maria Anders</td>
+            <td>Germany</td>
+            <td>Alfreds Futterkiste</td>            
+          </tr>
+          <tr>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+              <td>Alfreds Futterkiste</td>            
+            </tr>
+            <tr>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Germany</td>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Germany</td>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Germany</td>
+                <td>Alfreds Futterkiste</td>            
+              </tr> -->
+
+    </table>
+
+
+  </ion-scroll>
+</ion-content>

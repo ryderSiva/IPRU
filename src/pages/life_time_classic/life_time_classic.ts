@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { BenifitOfIllustrationsPage } from '../../pages/benifit-of-illustrations/benifit-of-illustrations';
+
 
 @Component({
   selector: 'page-lifetimeclassic',
@@ -17,6 +19,8 @@ export class LifeTimeClassicPage {
   wealthBooster:any;
   policyTerm:any;
   loyaltyAdditions:any;
+  lifeTimeClassic:any=[];
+  policyTermSelected:any;
   constructor(public navCtrl: NavController) {
   
   }
@@ -72,6 +76,7 @@ export class LifeTimeClassicPage {
   }
 
   policyTermSelect(value){
+    this.policyTermSelected=value;
     //this.policyTerm=value;
     //this.calWealthBooster(this.payingTermSelected,this.policyTerm);
     
@@ -94,5 +99,19 @@ export class LifeTimeClassicPage {
       this.loyaltyAdditions="6 & 7 (0.15%)  8>= (0.30%)";
     }
     
+  }
+
+  calculate(){
+    console.log("calculate")
+    var paying = [];
+    
+    for(var i=0;i<this.payingTermSelected;i++){
+        paying.push(this.premiumInput*this.premiumSelected);
+    }
+    console.log(paying);
+
+    console.log(this.premiumInput);
+    this.lifeTimeClassic={'payingTerm':this.payingTermSelected,'policyTerm':this.policyTermSelected,'premiumInput':paying}
+    this.navCtrl.push(BenifitOfIllustrationsPage,this.lifeTimeClassic);
   }
 }
