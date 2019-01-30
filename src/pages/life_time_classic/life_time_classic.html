@@ -72,7 +72,7 @@ background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);">
         <ion-row>
             <ion-col col-8>
                 <h4>Rate of Return</h4>
-                <ion-input style="outline: auto;width: 309px;"></ion-input>
+                <ion-input style="outline: auto;width: 309px;" [(ngModel)]="rateInput" (input)="rateEnter($event)"></ion-input>
             </ion-col>
 
         </ion-row>

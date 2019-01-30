@@ -14,7 +14,8 @@ background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);">
         <th style="border: 2px solid;">PREMIUM</th>
         <th style="border: 2px solid;">PREMIUM ALLOCATION CHARGES</th>
         <th style="border: 2px solid;">ADMIN CHARGES</th>
-        <th style="border: 2px solid;">CUMULATIVE INVESTIBLE PORTION GROWTH </th>
+        <th style="border: 2px solid;">CUMULATIVE INVESTIBLE PORTION </th>
+        <th style="border: 2px solid;">GROWTH </th>
         <th style="border: 2px solid;">LOYALTY ADDITION</th>
         <th style="border: 2px solid;">WEALTH BOOSTER</th>
         <th style="border: 2px solid;">FUND VALUE AT THE END OF YEAR</th>
@@ -26,40 +27,45 @@ background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);">
           {{policy.policy}}
         </td>
         <td>
-            {{policy.perimum}}
+          {{policy.perimum}}
 
         </td>
         <td>
-            {{policy.allocationCharges}}
+          {{policy.allocationCharges}}
 
         </td>
         <td>
-            {{policy.allocationCharges}}
+          {{policy.adminCharges}}
 
         </td>
         <td>
-            {{policy.allocationCharges}}
+          {{policy.cumulativePortion}}
 
         </td>
         <td>
-            {{policy.allocationCharges}}
-          </td>
+          {{policy.growth}}
+        </td>
         <td>
-            {{policy.allocationCharges}}
+          {{policy.loyaltyAddition}}
 
         </td>
         <td>
-            {{policy.allocationCharges}}
+          {{policy.wealthBooster}}
 
         </td>
         <td>
-            {{policy.allocationCharges}}
+          {{policy.fundValue}}
 
         </td>
         <td>
-            {{policy.allocationCharges}}
+          {{policy.partialWithdrawal}}
 
         </td>
+        <td>
+          {{policy.sumAssured}}
+
+        </td>
+
 
       </tr>
       <!-- <tr>

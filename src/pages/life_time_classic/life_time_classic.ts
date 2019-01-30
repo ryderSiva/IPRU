@@ -15,12 +15,13 @@ export class LifeTimeClassicPage {
   payingTermSelected: any;
   isReadonly: boolean = true;
   premiumAllocationCharges: any;
-  adminCharges: any = 6000;
+  adminCharges: any = "1-5(1.14%) Thereafter(2.40%)";
   wealthBooster: any;
   policyTerm: any;
   loyaltyAdditions: any;
   lifeTimeClassic: any = [];
   policyTermSelected: any;
+  rateInput: any;
   constructor(public navCtrl: NavController) {
 
   }
@@ -82,6 +83,10 @@ export class LifeTimeClassicPage {
 
   }
 
+  rateEnter(value) {
+    console.log(this.rateInput);
+  }
+
   calWealthBooster(term) {
     console.log(term);
     if (term == '10') {
@@ -105,13 +110,22 @@ export class LifeTimeClassicPage {
     console.log("calculate")
     var paying = [];
     var allocationCharges = [];
+    var adminChargesCal = [];
+    var loyaltyAddition = [];
+    var wealthBooster = [];
+    var partialWithdrawal = [];
     var payingCal = this.premiumInput * this.premiumSelected;
 
+    //paying,loyaltyAddition,partialWithdrawal
     for (var i = 0; i < this.payingTermSelected; i++) {
       paying.push(payingCal);
-      allocationCharges.push(allocationChargesCal);
+      loyaltyAddition.push("N/A");
+      wealthBooster.push("N/A");
+      partialWithdrawal.push("N/A");
+      // allocationCharges.push(allocationChargesCal);
     }
 
+    //allocationCharges
     if (this.premiumAllocationCharges == "6%") {
       allocationCharges = [];
       console.log("premiumAllocationCharges" + this.premiumAllocationCharges)
@@ -247,14 +261,46 @@ export class LifeTimeClassicPage {
       }
     }
 
+    //adminCharges
+    for (var f = 0; f < this.policyTermSelected; f++) {
+      if (f < 5) {
+        var acharges = payingCal * 0.0114;
+        adminChargesCal.push(acharges);
+      } else {
+        var acharges = payingCal * 0.024;
+        adminChargesCal.push(acharges);
+      }
+    }
 
+    console.log("payingTermSelected" + this.payingTermSelected);
+    console.log("policyTermSelected" + this.policyTermSelected);
+    console.log("rateInput" + this.rateInput);
+    console.log("sumAssured" + this.sumAssured);
 
     console.log(paying);
     console.log(allocationCharges);
+    console.log(adminChargesCal)
+    console.log(loyaltyAddition);
+    console.log(wealthBooster);
+    console.log(partialWithdrawal)
 
-    if (allocationCharges.length > 0) {
-      this.lifeTimeClassic = { 'payingTerm': this.payingTermSelected, 'policyTerm': this.policyTermSelected, 'premiumInput': paying, "premiumAllocationCharges": allocationCharges }
+
+    if (allocationCharges.length > 0 && this.policyTermSelected !== undefined && this.rateInput !== undefined) {
+      this.lifeTimeClassic = {
+        'payingTerm': this.payingTermSelected,
+        'policyTerm': this.policyTermSelected,
+        'premiumInput': paying,
+        "premiumAllocationCharges": allocationCharges,
+        "adminCharges": adminChargesCal,
+        "rateInput": this.rateInput,
+        "sumAssured": this.sumAssured,
+        "loyaltyAddition": loyaltyAddition,
+        "wealthBooster": wealthBooster,
+        "partialWithdrawal": partialWithdrawal
+      }
       this.navCtrl.push(BenifitOfIllustrationsPage, this.lifeTimeClassic);
+    } else {
+      alert("Please Select payingTerm,policyTerm,rateInput");
     }
 
   }
