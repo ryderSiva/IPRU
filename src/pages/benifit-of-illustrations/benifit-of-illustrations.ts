@@ -21,6 +21,10 @@ export class BenifitOfIllustrationsPage {
   loyaltyAddition: any;
   wealthBooster: any;
   partialWithdrawal: any;
+  loyaltyInput: any;
+  preimumCount: any;
+  wealthBoosterInput: any;
+  partialInput: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams) {
@@ -44,21 +48,20 @@ export class BenifitOfIllustrationsPage {
     this.rateInput = navParams.data.rateInput;
     this.sumAssured = navParams.data.sumAssured;
     this.loyaltyAddition = navParams.data.loyaltyAddition;
-    this.wealthBooster = navParams.data.wealthBooster;
+    this.wealthBoosterInput = navParams.data.wealthBooster;
     this.partialWithdrawal = navParams.data.partialWithdrawal;
+    this.loyaltyInput = navParams.data.loyaltyInput;
+    this.partialInput = navParams.data.partialInput;
 
 
     this.testVal = [];
     console.log("policyTerm" + this.policyTerm)
-    var preimumCount = this.policyTerm - this.payingTerm;
-    console.log("preimumCount" + preimumCount)
+    this.preimumCount = this.policyTerm - this.payingTerm;
+    console.log("preimumCount" + this.preimumCount)
 
-    for (var p = 0; p < preimumCount; p++) {
+    for (var p = 0; p < this.preimumCount; p++) {
       this.perimum.push(0);
       this.allocationCharges.push(0);
-      this.loyaltyAddition.push(0);
-      this.wealthBooster.push(0);
-      this.partialWithdrawal.push(0);
 
     }
 
@@ -66,11 +69,25 @@ export class BenifitOfIllustrationsPage {
     var growthCal: number = 0;
     var fval: number = 0;
     var sumAssuredCal = 0;
+    var loyaltyCal = 0;
+    var wealth = 0;
+    var partial = 0;
     for (var c = 0; c < this.perimum.length; c++) {
       cumulative = this.getCumulative(this.perimum[c], this.allocationCharges[c], this.adminCharges[c], c);
       growthCal = this.getGrowth(cumulative, Number(this.rateInput));
-      fval = this.getFundValue(cumulative, growthCal);
-      sumAssuredCal = this.getSumAssured(fval, this.sumAssured);
+
+      if (c == 0 || c == 1 || c == 2 || c == 3 || c == 4) {
+        console.log("payingTerm" + this.payingTerm + "index" + c);
+        fval = this.getFundValue(cumulative, growthCal);
+        sumAssuredCal = this.getSumAssured(fval, this.sumAssured);
+      } else {
+        loyaltyCal = this.getLoyalty(cumulative, growthCal, c);
+        fval = this.getFundValues(cumulative, growthCal, loyaltyCal);
+        partial = this.getPartial(fval);
+        sumAssuredCal = this.getSumAssured(fval, this.sumAssured);
+      }
+
+      wealth = this.getWealthBooster(cumulative, growthCal, c);
 
     }
 
@@ -81,6 +98,8 @@ export class BenifitOfIllustrationsPage {
     console.log(this.growth)
     console.log(this.fundValue)
     console.log(this.sumAssuredValue)
+    console.log(this.loyaltyAddition)
+    console.log(this.partialWithdrawal)
 
 
 
@@ -113,25 +132,31 @@ export class BenifitOfIllustrationsPage {
   getCumulative(perimum, allocationCharges, adminCharges, index) {
     var result = 0;
     var fund = 0;
-    if (perimum == 0 && allocationCharges == 0) {
-      fund = this.fundValue[index - 1];
-      result = Math.round(fund - adminCharges);
+    var sfund = 0;
+    if (index == 0) {
+      result = Math.round(perimum - Math.round(allocationCharges + adminCharges));
       this.cumulativePortion.push(result);
     }
     else {
+      if (perimum == 0 && allocationCharges == 0) {
+        fund = this.fundValue[index - 1];
+        result = Math.round(fund - adminCharges);
+        this.cumulativePortion.push(result);
+      }
+      else {
 
-      result = Math.round(perimum - Math.round(allocationCharges + adminCharges));
-      this.cumulativePortion.push(result);
+        sfund = Math.round(perimum - Math.round(allocationCharges + adminCharges));
+        result = Math.round(sfund + this.fundValue[index - 1]);
+        this.cumulativePortion.push(result);
 
+      }
     }
-
     return result;
   }
   getGrowth(cumulative, rateInput) {
     var result = 0;
 
-    result = cumulative * (rateInput /100);
-    console.log(rateInput /100);
+    result = Math.round(cumulative * (rateInput / 100));
     console.log(result);
 
     this.growth.push(result);
@@ -145,10 +170,62 @@ export class BenifitOfIllustrationsPage {
     return result;
 
   }
+  getFundValues(cumulative, growthCal, loyaltyCal) {
+    var result = 0;
+    result = Math.round(cumulative + growthCal + loyaltyCal);
+    this.fundValue.push(result);
+    return result;
+  }
+
   getSumAssured(fval, sumAssured) {
     var result = 0;
     result = Math.round(fval + sumAssured);
     this.sumAssuredValue.push(result);
+    return result;
+  }
+  getLoyalty(cumulative, growthCal, index) {
+    console.log("getLoyalty" + this.loyaltyInput);
+    var loyal = 0;
+    if (this.loyaltyInput == "0.10%") {
+      loyal = 0.001;
+    } else {
+      if (index == 5 || index == 6) {
+        loyal = 0.0015;
+      } else {
+        loyal = 0.003;
+      }
+
+    }
+    console.log(loyal)
+    var result = 0;
+    result = Math.round((cumulative + growthCal) * loyal);
+    this.loyaltyAddition.push(result);
+    console.log("getLoyalty" + result)
+    return result;
+
+  }
+  getWealthBooster(cumulative, growthCal, index) {
+    var result = 0;
+    if (index == 9 || index == 14 || index == 19 || index == 24 || index == 29) {
+      result = Math.round((cumulative + growthCal) * this.wealthBoosterInput / 100);
+      this.wealthBooster.push(result);
+
+    } else {
+      this.wealthBooster.push("N/A");
+    }
+    console.log("wealthBooster" + result)
+    return result;
+  }
+  getPartial(fval) {
+    var result = 0;
+
+    if (this.partialInput == 0) {
+      result = 0;
+      this.partialWithdrawal.push(result);
+    } else {
+      result = Math.round(fval * (this.partialInput / 100));
+      this.partialWithdrawal.push(result);
+    }
     return result;
   }
 }

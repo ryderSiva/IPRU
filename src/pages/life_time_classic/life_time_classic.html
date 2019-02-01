@@ -120,7 +120,7 @@ background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);">
         <ion-row>
                 <ion-col col-8>
                     <h4>Partial Withdrawals</h4>
-                    <ion-input style="outline: auto;width: 309px;"></ion-input>
+                    <ion-input style="outline: auto;width: 309px;" [(ngModel)]="partialInput" (input)="partialEnter($event)"></ion-input>
                 </ion-col>
     
             </ion-row>

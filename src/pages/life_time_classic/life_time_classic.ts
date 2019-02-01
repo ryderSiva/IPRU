@@ -22,14 +22,14 @@ export class LifeTimeClassicPage {
   lifeTimeClassic: any = [];
   policyTermSelected: any;
   rateInput: any;
+  partialInput:any;
+  
   constructor(public navCtrl: NavController) {
 
   }
   premiumEnter(value) {
     console.log(this.premiumInput);
     this.calSumAssured();
-
-
   }
   premiumSelect(value) {
     // console.log(value);
@@ -106,30 +106,36 @@ export class LifeTimeClassicPage {
 
   }
 
+  partialEnter(value) {
+    console.log(this.partialInput);
+  }
+  
+
   calculate() {
     console.log("calculate")
     var paying = [];
     var allocationCharges = [];
     var adminChargesCal = [];
     var loyaltyAddition = [];
-    var wealthBooster = [];
     var partialWithdrawal = [];
     var payingCal = this.premiumInput * this.premiumSelected;
 
-    //paying,loyaltyAddition,partialWithdrawal
+    //paying,partialWithdrawal
     for (var i = 0; i < this.payingTermSelected; i++) {
       paying.push(payingCal);
+   }
+
+    //loyaltyAddition,partialWithdrawal
+    for(var l=0;l<5;l++){
       loyaltyAddition.push("N/A");
-      wealthBooster.push("N/A");
       partialWithdrawal.push("N/A");
-      // allocationCharges.push(allocationChargesCal);
     }
 
     //allocationCharges
     if (this.premiumAllocationCharges == "6%") {
       allocationCharges = [];
       console.log("premiumAllocationCharges" + this.premiumAllocationCharges)
-      var allocationChargesCal = payingCal * 0.06;
+      var allocationChargesCal = Math.round(payingCal * 0.06);
       for (var a = 0; a < this.payingTermSelected; a++) {
         allocationCharges.push(allocationChargesCal);
       }
@@ -140,11 +146,11 @@ export class LifeTimeClassicPage {
       allocationCharges = [];
       for (var b = 0; b < this.payingTermSelected; b++) {
         if (b < 5) {
-          var allocationChargesCal = payingCal * 0.06;
+          var allocationChargesCal = Math.round(payingCal * 0.06);
           allocationCharges.push(allocationChargesCal);
         }
         else if (b >= 5) {
-          var allocationChargesCal = payingCal * 0.04;
+          var allocationChargesCal = Math.round(payingCal * 0.04);
           allocationCharges.push(allocationChargesCal);
 
         }
@@ -156,16 +162,16 @@ export class LifeTimeClassicPage {
       allocationCharges = [];
       for (var b = 0; b < this.payingTermSelected; b++) {
         if (b < 5) {
-          var allocationChargesCal = payingCal * 0.06;
+          var allocationChargesCal = Math.round(payingCal * 0.06);
           allocationCharges.push(allocationChargesCal);
         }
         else if (b >= 5 && b < 7) {
-          var allocationChargesCal = payingCal * 0.04;
+          var allocationChargesCal = Math.round(payingCal * 0.04);
           allocationCharges.push(allocationChargesCal);
 
         }
         else if (b >= 7) {
-          var allocationChargesCal = payingCal * 0.02;
+          var allocationChargesCal = Math.round(payingCal * 0.02);
           allocationCharges.push(allocationChargesCal);
 
         }
@@ -178,21 +184,21 @@ export class LifeTimeClassicPage {
       allocationCharges = [];
       for (var c = 0; c < this.payingTermSelected; c++) {
         if (c == 0) {
-          var allocationChargesCal = payingCal * 0.06;
+          var allocationChargesCal = Math.round(payingCal * 0.06);
           allocationCharges.push(allocationChargesCal);
         }
         else if (c == 1 || c == 2) {
-          var allocationChargesCal = payingCal * 0.05;
+          var allocationChargesCal = Math.round(payingCal * 0.05);
           allocationCharges.push(allocationChargesCal);
 
         }
         else if (c == 3) {
-          var allocationChargesCal = payingCal * 0.045;
+          var allocationChargesCal = Math.round(payingCal * 0.045);
           allocationCharges.push(allocationChargesCal);
 
         }
         else if (c == 4) {
-          var allocationChargesCal = payingCal * 0.04;
+          var allocationChargesCal = Math.round(payingCal * 0.04);
           allocationCharges.push(allocationChargesCal);
 
         }
@@ -206,21 +212,21 @@ export class LifeTimeClassicPage {
       allocationCharges = [];
       for (var d = 0; d < this.payingTermSelected; d++) {
         if (d == 0) {
-          var allocationChargesCal = payingCal * 0.06;
+          var allocationChargesCal = Math.round(payingCal * 0.06);
           allocationCharges.push(allocationChargesCal);
         }
         else if (d == 1 || d == 2) {
-          var allocationChargesCal = payingCal * 0.05;
+          var allocationChargesCal = Math.round(payingCal * 0.05);
           allocationCharges.push(allocationChargesCal);
 
         }
         else if (d == 3) {
-          var allocationChargesCal = payingCal * 0.045;
+          var allocationChargesCal = Math.round(payingCal * 0.045);
           allocationCharges.push(allocationChargesCal);
 
         }
         else if (d > 3) {
-          var allocationChargesCal = payingCal * 0.04;
+          var allocationChargesCal = Math.round(payingCal * 0.04);
           allocationCharges.push(allocationChargesCal);
 
         }
@@ -233,26 +239,26 @@ export class LifeTimeClassicPage {
       allocationCharges = [];
       for (var e = 0; e < this.payingTermSelected; e++) {
         if (e == 0) {
-          var allocationChargesCal = payingCal * 0.06;
+          var allocationChargesCal = Math.round(payingCal * 0.06);
           allocationCharges.push(allocationChargesCal);
         }
         else if (e == 1 || e == 2) {
-          var allocationChargesCal = payingCal * 0.05;
+          var allocationChargesCal = Math.round(payingCal * 0.05);
           allocationCharges.push(allocationChargesCal);
 
         }
         else if (e == 3) {
-          var allocationChargesCal = payingCal * 0.045;
+          var allocationChargesCal = Math.round(payingCal * 0.045);
           allocationCharges.push(allocationChargesCal);
 
         }
         else if (e > 3 && e < 7) {
-          var allocationChargesCal = payingCal * 0.04;
+          var allocationChargesCal = Math.round(payingCal * 0.04);
           allocationCharges.push(allocationChargesCal);
 
         }
         else if (e >= 7) {
-          var allocationChargesCal = payingCal * 0.02;
+          var allocationChargesCal = Math.round(payingCal * 0.02);
           allocationCharges.push(allocationChargesCal);
 
         }
@@ -264,10 +270,10 @@ export class LifeTimeClassicPage {
     //adminCharges
     for (var f = 0; f < this.policyTermSelected; f++) {
       if (f < 5) {
-        var acharges = payingCal * 0.0114;
+        var acharges = Math.round(payingCal * 0.0114);
         adminChargesCal.push(acharges);
       } else {
-        var acharges = payingCal * 0.024;
+        var acharges = Math.round(payingCal * 0.024);
         adminChargesCal.push(acharges);
       }
     }
@@ -281,9 +287,11 @@ export class LifeTimeClassicPage {
     console.log(allocationCharges);
     console.log(adminChargesCal)
     console.log(loyaltyAddition);
-    console.log(wealthBooster);
+    console.log(this.wealthBooster);
     console.log(partialWithdrawal)
-
+    if(this.partialInput == undefined){
+      this.partialInput = 0;
+    }
 
     if (allocationCharges.length > 0 && this.policyTermSelected !== undefined && this.rateInput !== undefined) {
       this.lifeTimeClassic = {
@@ -295,8 +303,10 @@ export class LifeTimeClassicPage {
         "rateInput": this.rateInput,
         "sumAssured": this.sumAssured,
         "loyaltyAddition": loyaltyAddition,
-        "wealthBooster": wealthBooster,
-        "partialWithdrawal": partialWithdrawal
+        "loyaltyInput":this.loyaltyAdditions,
+        "wealthBooster": this.wealthBooster,
+        "partialWithdrawal": partialWithdrawal,
+        "partialInput":this.partialInput
       }
       this.navCtrl.push(BenifitOfIllustrationsPage, this.lifeTimeClassic);
     } else {
