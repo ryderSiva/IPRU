@@ -28,6 +28,7 @@ export class LifeTimeClassicPage {
 
   }
   premiumEnter(value) {
+
     console.log(this.premiumInput);
     this.calSumAssured();
   }
