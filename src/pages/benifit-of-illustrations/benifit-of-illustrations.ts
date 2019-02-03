@@ -27,8 +27,8 @@ export class BenifitOfIllustrationsPage {
   partialInput: any;
   preimumTotal: any;
   allocationChargesToal: any;
-  adminChargesTotal: any;
-  loyaltyAdditionTotal: any;
+  adminChargesTotal: any=0;
+  loyaltyAdditionTotal: any=0;
   wealthBoosterTotal: any;
   partialWithdrawalTotal: any;
   fundValueTotal:any;
@@ -109,6 +109,7 @@ export class BenifitOfIllustrationsPage {
     console.log(this.loyaltyAddition)
     console.log(this.partialWithdrawal)
 
+
     this.preimumTotal = 0;
     for (var ix = 0; ix < this.perimum.length; ix++) {
       this.preimumTotal = this.preimumTotal + this.perimum[ix];
@@ -124,17 +125,19 @@ export class BenifitOfIllustrationsPage {
     this.adminChargesTotal = 0;
     for (var iz = 0; iz < this.adminCharges.length; iz++) {
       this.adminChargesTotal = this.adminChargesTotal + this.adminCharges[iz];
+      console.log("adminChargesTotal" + this.adminChargesTotal)
     }
-    console.log("adminChargesTotal" + this.adminChargesTotal)
+    
 
     this.loyaltyAdditionTotal = 0;
     for (var ia = 0; ia < this.loyaltyAddition.length; ia++) {
       if (this.loyaltyAddition[ia] !== "N/A") {
         this.loyaltyAdditionTotal = this.loyaltyAdditionTotal + this.loyaltyAddition[ia];
+        console.log("loyaltyAdditionTotal" + this.loyaltyAdditionTotal)
       }
 
     }
-    console.log("loyaltyAdditionTotal" + this.loyaltyAdditionTotal)
+   
 
    
 

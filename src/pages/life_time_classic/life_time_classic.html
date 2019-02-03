@@ -15,7 +15,7 @@ background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);">
         <ion-row>
             <ion-col col-8>
                 <h4>Premium</h4>
-                <ion-input style="outline: auto;width: 195px;" [(ngModel)]="premiumInput" (input)="premiumEnter($event)"></ion-input>
+                <ion-input type="number" style="outline: auto;width: 195px;" [(ngModel)]="premiumInput" (input)="premiumEnter($event)"></ion-input>
             </ion-col>
             <ion-col style="margin-top: 31px;">
                 <ion-select text-wrap style="margin-left: -17px;
@@ -72,7 +72,7 @@ background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);">
         <ion-row>
             <ion-col col-8>
                 <h4>Rate of Return</h4>
-                <ion-input style="outline: auto;width: 309px;" [(ngModel)]="rateInput" (input)="rateEnter($event)"></ion-input>
+                <ion-input type="number" style="outline: auto;width: 309px;" [(ngModel)]="rateInput" (input)="rateEnter($event)"></ion-input>
             </ion-col>
 
         </ion-row>
@@ -120,7 +120,7 @@ background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);">
         <ion-row>
                 <ion-col col-8>
                     <h4>Partial Withdrawals</h4>
-                    <ion-input style="outline: auto;width: 309px;" [(ngModel)]="partialInput" (input)="partialEnter($event)"></ion-input>
+                    <ion-input type="number" style="outline: auto;width: 309px;" [(ngModel)]="partialInput" (input)="partialEnter($event)"></ion-input>
                 </ion-col>
     
             </ion-row>

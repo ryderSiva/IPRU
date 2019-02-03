@@ -28,7 +28,7 @@ page-benifit-of-illustrations {
     }
 
     table {
-        font-family: arial, sans-serif;
+        font-family: 'Times New Roman', Times, serif;
         border-collapse: collapse;
         width: 100%;
       }
@@ -40,8 +40,9 @@ page-benifit-of-illustrations {
       }
       
       tr:nth-child(even) {
-        background: -webkit-linear-gradient(left, #ae2b30 0%,#f26522 100%);
-background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);;
+          background: #dddddd;
+       // background: -webkit-linear-gradient(left, #ae2b30 0%,#f26522 100%);
+//background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);;
       }
 
 
