@@ -39,7 +39,7 @@ page-benifit-of-illustrations {
         padding: 8px;
       }
       
-      tr:nth-child(even) {
+      tr:nth-child(odd).dynamicRow{
           background: #dddddd;
        // background: -webkit-linear-gradient(left, #ae2b30 0%,#f26522 100%);
 //background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);;

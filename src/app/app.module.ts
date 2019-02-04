@@ -11,7 +11,8 @@ import { BenifitOfIllustrationsPage } from '../pages/benifit-of-illustrations/be
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { File } from '@ionic-native/file'
+import { FileOpener } from '@ionic-native/file-opener'
 @NgModule({
   declarations: [
     MyApp,
@@ -38,7 +39,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    File,
+    FileOpener,
   ]
 })
 export class AppModule {}

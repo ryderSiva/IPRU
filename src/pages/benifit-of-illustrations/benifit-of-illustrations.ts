@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams, Platform, LoadingController } from 'ionic-angular';
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
+import pdfMake from 'pdfmake/build/pdfMake';
+import pdfFonts from 'pdfmake/build/vfs_fonts'
+import * as html2canvas from 'html2canvas';
+pdfMake.vfs=pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'page-benifit-of-illustrations',
   templateUrl: 'benifit-of-illustrations.html',
@@ -32,10 +37,13 @@ export class BenifitOfIllustrationsPage {
   wealthBoosterTotal: any;
   partialWithdrawalTotal: any;
   fundValueTotal:any;
+  pdfObj=null;
+  loader:any;
   constructor(
+    public loadingController:LoadingController,
     public platform:Platform,
     public navCtrl: NavController,
-    public navParams: NavParams) {
+    public navParams: NavParams,private fileOpener: FileOpener,private file: File) {
 
     this.perimum = [];
     this.allocationCharges = [];
@@ -287,5 +295,79 @@ export class BenifitOfIllustrationsPage {
       this.partialWithdrawal.push(result);
     }
     return result;
+  }
+
+  downloadPdf(){
+    console.log("pdf")
+   
+      this.loader = this.loadingController.create({content:'Please wait...'})
+      this.loader.present();
+  
+      const div = document.getElementById("tableCont");
+      console.log(div.clientHeight);
+      console.log(div.clientWidth);
+      const options = {background:"white",height :div.clientHeight , width :div.clientWidth };
+      html2canvas(div,options).then((canvas)=>{
+        var data = canvas.toDataURL();
+        var docDefinition = {
+            content: [{
+                image: data,
+                height:600,
+                width :500 ,
+                
+               
+            }],
+            // styles: {
+            //   header: {
+            //     fontSize: 18,
+            //     bold: true,
+            //     margin: [0, 0, 0, 10]
+            //   },
+            //   subheader: {
+            //     fontSize: 16,
+            //     bold: true,
+            //     margin: [0, 10, 0, 5]
+            //   },
+            //   tableExample: {
+            //     margin: [0, 5, 0, 15]
+            //   },
+            //   tableHeader: {
+            //     bold: true,
+            //     fontSize: 13,
+            //     color: "black"
+            //   },
+            //   sectionStyling: {
+            //     fontSize: 18,
+            //     color: "blue",
+            //     bold: true,
+            //     alignment: "right",
+            //     margin: [0, 190, 0, 80]
+            //   }
+            // },
+          
+            // defaultStyle: {
+            //   alignment: "justify",
+              
+            // }
+        };
+        this.pdfObj =pdfMake.createPdf(docDefinition);
+        if(this.platform.is('cordova')){
+          this.pdfObj.getBuffer((buffer)=>{
+            var utf8=new Uint8Array(buffer);
+            var binaryArray=utf8.buffer;
+            var blob=new Blob([binaryArray],{type:'application/pdf'});
+            this.file.writeFile(this.file.dataDirectory,'Benifit of Illustrations.pdf',blob,{replace:true}).then(fileEntry=>{
+              this.loader.dismiss();
+              this.fileOpener.open(this.file.dataDirectory+'Benifit of Illustrations.pdf','application/pdf');
+            })
+          });
+         }else{
+          this.loader.dismiss();
+           this.pdfObj.download();
+         }
+      });
+   
+    
+    
   }
 }

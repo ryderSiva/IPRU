@@ -1,13 +1,29 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>BENIFIT OF ILLUSTRATIONS</ion-title>
+      <ion-row>
+          <ion-col style="margin-top: 13px;background: white;
+          border: none;" col-10>
+          <span style="font-size:17px;">BENIFIT OF ILLUSTRATIONS</span>
+  </ion-col>
+  <ion-col  style="background: white;border: none;" col-2 (click)="downloadPdf()">
+          
+          <ion-icon name="download" style="font-size: 2em;margin-left: 10px;"></ion-icon> <br>
+          <span>Export</span>
+  </ion-col>
+
+
+
+  </ion-row>
+
+
+   
   </ion-navbar>
 
 </ion-header>
-<ion-content >
+<ion-content>
   <ion-scroll direction="x" class="wide-as-needed">
-    <table >
+    <table  id="tableCont" >
       <tr text-wrap style="background: #dddddd;color:black;">
         <th style="border: 1px solid;">POLICY YEARS</th>
         <th style="border: 1px solid;">PREMIUM</th>
@@ -21,7 +37,7 @@
         <th style="border: 1px solid;">PARTIAL WITHDRAWL</th>
         <th style="border: 1px solid;">SUM ASSURED</th>
       </tr>
-      <tr *ngFor="let policy of this.testVal" style="font-size: initial;">
+      <tr  class="dynamicRow"  *ngFor="let policy of this.testVal" style="font-size: initial;">
         <td>
           {{policy.policy}}
         </td>
@@ -67,46 +83,60 @@
 
 
       </tr>
-      <tr style="background: #dddddd;color:black;font-weight: bold;
-      font-size: initial;">
-        <td rowspan="2" style="border: 2px solid;">
-          TOTAL
-        </td>
-        <td rowspan="2" style="border: 2px solid;">
-          {{this.preimumTotal}}
-        </td>
-        <td style="border: 2px solid;">
-          {{this.allocationChargesToal}}
-        </td>
-        <td style="border: 2px solid;">
-          {{this.adminChargesTotal}}
-        </td>
-        <td colspan="2" rowspan="2" style="border: 2px solid;">
-          LOYALTIY ADDITIONS AND WEALTH BOOSTERS
-        </td>
-        <td style="border: 2px solid;">
-          {{this.loyaltyAdditionTotal}}
-        </td>
-        <td style="border: 2px solid;">
-          {{this.wealthBoosterTotal}}
-        </td>
-        <td rowspan="2" style="border: 2px solid;">
-          {{this.fundValue[this.fundValue.length-1]}}
-        </td>
-        <td rowspan="2" style="border: 2px solid;">
-          {{this.partialWithdrawalTotal}}
-        </td>
-        <td rowspan="2" style="border: 2px solid;">
+      
+            <tr style="color:black;font-weight: bold;
+            font-size: initial;">
+              <td rowspan="3" style="border: 2px solid;">
+                TOTAL
+              </td>
+              <td rowspan="3" style="border: 2px solid;">
+                {{this.preimumTotal}}
+              </td>
+              <td style="border: 2px solid;">
+                {{this.allocationChargesToal}}
+              </td>
+              <td style="border: 2px solid;">
+                {{this.adminChargesTotal}}
+              </td>
+              <td colspan="2" rowspan="2" style="border: 2px solid;">
+                LOYALTIY ADDITIONS AND WEALTH BOOSTERS
+              </td>
+              <td style="border: 2px solid;">
+                {{this.loyaltyAdditionTotal}}
+              </td>
+              <td style="border: 2px solid;">
+                {{this.wealthBoosterTotal}}
+              </td>
+              <td rowspan="2" style="border: 2px solid;">
+                {{this.fundValue[this.fundValue.length-1]}}
+              </td>
+              <td rowspan="2" style="border: 2px solid;">
+                {{this.partialWithdrawalTotal}}
+              </td>
+              <td rowspan="2" style="border: 2px solid;">
+      
+              </td>
+            </tr>
+            <tr style="color:black;font-weight: bold;
+            font-size: initial;">
+              <td colspan="2" style="border-bottom: 2px solid;">
+                  {{this.allocationChargesToal + this.adminChargesTotal}}
+              </td>
+              <td colspan="2" style="border-bottom: 2px solid;">
+                  {{this.loyaltyAdditionTotal + this.wealthBoosterTotal}}
+                </td>
 
-        </td>
-      </tr>
-      <tr style="background: #dddddd;color:black;font-weight: bold;
-      font-size: initial;">
-        <td colspan="2"  style="border-bottom: 1px solid;">{{this.allocationChargesToal + this.adminChargesTotal}}</td>
-
-        <td colspan="2"  style="border-bottom: 1px solid;">{{this.loyaltyAdditionTotal + this.wealthBoosterTotal}}</td>
-
-      </tr>
+            </tr>
+            <!-- <tr style="background: #dddddd;color:black;font-weight: bold;
+            font-size: initial;">
+              <td colspan="2" style="border: 2px solid;">{{this.allocationChargesToal + this.adminChargesTotal}}</td>
+      
+              <td colspan="2" style="border: 2px solid;">{{this.loyaltyAdditionTotal + this.wealthBoosterTotal}}</td>
+      
+            </tr> -->
+       
+        
+      
       <!-- <tr>
             <td>Alfreds Futterkiste</td>
             <td>Maria Anders</td>
