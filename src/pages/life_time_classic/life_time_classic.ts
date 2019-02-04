@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform, AlertController } from 'ionic-angular';
 import { BenifitOfIllustrationsPage } from '../../pages/benifit-of-illustrations/benifit-of-illustrations';
-
+import { HomePage } from '../../pages/home/home';
 
 @Component({
   selector: 'page-lifetimeclassic',
@@ -24,8 +24,13 @@ export class LifeTimeClassicPage {
   rateInput: any;
   partialInput:any;
   
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,public platform: Platform,public alert: AlertController) {
 
+  }
+  ionViewDidLoad() {
+    this.platform.registerBackButtonAction(() => {
+      this.navCtrl.setRoot(HomePage);
+    });
   }
   premiumEnter(value) {
 
@@ -311,7 +316,12 @@ export class LifeTimeClassicPage {
       }
       this.navCtrl.push(BenifitOfIllustrationsPage, this.lifeTimeClassic);
     } else {
-      alert("Please Select payingTerm,policyTerm,rateInput");
+      let alert = this.alert.create({
+        subTitle: "Please Select the Premium Paying Term, Policy Term and Rate of Return",
+        buttons: ['OK']
+      });
+      alert.present();
+      
     }
 
   }

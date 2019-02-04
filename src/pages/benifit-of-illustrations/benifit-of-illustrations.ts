@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 
 @Component({
   selector: 'page-benifit-of-illustrations',
@@ -33,6 +33,7 @@ export class BenifitOfIllustrationsPage {
   partialWithdrawalTotal: any;
   fundValueTotal:any;
   constructor(
+    public platform:Platform,
     public navCtrl: NavController,
     public navParams: NavParams) {
 
@@ -183,7 +184,9 @@ export class BenifitOfIllustrationsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BenifitOfIllustrationsPage');
+    this.platform.registerBackButtonAction(() => {
+      this.navCtrl.pop();
+    });
   }
 
   getCumulative(perimum, allocationCharges, adminCharges, index) {

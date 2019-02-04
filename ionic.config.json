@@ -1,5 +1,7 @@
 {
   "name": "IPRU",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 import { BenifitOfIllustrationsPage } from '../../pages/benifit-of-illustrations/benifit-of-illustrations';
-
+import { HomePage } from '../../pages/home/home';
 @Component({
   selector: 'page-elitewealthsuper',
   templateUrl: 'elite_wealth_super.html'
@@ -23,8 +23,14 @@ export class EliteWealthSuperPage {
   partialInput:any;
   
  
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform,public alert: AlertController) {
   }
+  ionViewDidLoad() {
+    this.platform.registerBackButtonAction(() => {
+      this.navCtrl.setRoot(HomePage);
+    });
+  }
+
   premiumEnter(value) {
 
     console.log(this.premiumInput);
@@ -309,7 +315,11 @@ export class EliteWealthSuperPage {
       }
       this.navCtrl.push(BenifitOfIllustrationsPage, this.lifeTimeClassic);
     } else {
-      alert("Please Select payingTerm,policyTerm,rateInput");
+      let alert = this.alert.create({
+        subTitle: "Please Select the Premium Paying Term, Policy Term and Rate of Return",
+        buttons: ['OK']
+      });
+      alert.present();
     }
 
   }
