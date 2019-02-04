@@ -30,9 +30,8 @@ export class EliteLifeSuperPage {
       this.navCtrl.setRoot(HomePage);
     });
   }
-
-  premiumEnter(value) {
-
+  premiumEnter(e) {
+    this.premiumInput = e.target.value;
     console.log(this.premiumInput);
     this.calSumAssured();
   }
@@ -88,7 +87,8 @@ export class EliteLifeSuperPage {
 
   }
 
-  rateEnter(value) {
+  rateEnter(e) {
+    this.rateInput = e.target.value;
     console.log(this.rateInput);
   }
 
@@ -111,13 +111,15 @@ export class EliteLifeSuperPage {
 
   }
 
-  partialEnter(value) {
+  partialEnter(e) {
+    this.partialInput = e.target.value;
     console.log(this.partialInput);
   }
-  
+
 
   calculate() {
-    console.log("calculate")
+    console.log("calculate");
+    console.log(this.premiumInput)
     var paying = [];
     var allocationCharges = [];
     var adminChargesCal = [];
@@ -128,10 +130,10 @@ export class EliteLifeSuperPage {
     //paying,partialWithdrawal
     for (var i = 0; i < this.payingTermSelected; i++) {
       paying.push(payingCal);
-   }
+    }
 
     //loyaltyAddition,partialWithdrawal
-    for(var l=0;l<5;l++){
+    for (var l = 0; l < 5; l++) {
       loyaltyAddition.push("N/A");
       partialWithdrawal.push("N/A");
     }
@@ -294,11 +296,8 @@ export class EliteLifeSuperPage {
     console.log(loyaltyAddition);
     console.log(this.wealthBooster);
     console.log(partialWithdrawal)
-    if(this.partialInput == undefined){
-      this.partialInput = 0;
-    }
-
-    if (allocationCharges.length > 0 && this.policyTermSelected !== undefined && this.rateInput !== undefined) {
+   
+    if (allocationCharges.length > 0 && this.premiumSelected !== 0 && this.policyTermSelected !== 0 && this.rateInput !== "" && this.rateInput !== 'undefined' && this.premiumInput !=="" && this.premiumInput !=='undefined') {
       this.lifeTimeClassic = {
         'payingTerm': this.payingTermSelected,
         'policyTerm': this.policyTermSelected,
@@ -308,20 +307,20 @@ export class EliteLifeSuperPage {
         "rateInput": this.rateInput,
         "sumAssured": this.sumAssured,
         "loyaltyAddition": loyaltyAddition,
-        "loyaltyInput":this.loyaltyAdditions,
+        "loyaltyInput": this.loyaltyAdditions,
         "wealthBooster": this.wealthBooster,
         "partialWithdrawal": partialWithdrawal,
-        "partialInput":this.partialInput
+        "partialInput": this.partialInput
       }
       this.navCtrl.push(BenifitOfIllustrationsPage, this.lifeTimeClassic);
     } else {
       let alert = this.alert.create({
-        subTitle: "Please Select the Premium Paying Term, Policy Term and Rate of Return",
+        subTitle: "Please Select the Premium, Premium Paying Term, Policy Term and Rate of Return",
         buttons: ['OK']
       });
       alert.present();
+
     }
 
   }
 }
-

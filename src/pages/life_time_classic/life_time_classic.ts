@@ -22,9 +22,9 @@ export class LifeTimeClassicPage {
   lifeTimeClassic: any = [];
   policyTermSelected: any;
   rateInput: any;
-  partialInput:any;
-  
-  constructor(public navCtrl: NavController,public platform: Platform,public alert: AlertController) {
+  partialInput: any;
+
+  constructor(public navCtrl: NavController, public platform: Platform, public alert: AlertController) {
 
   }
   ionViewDidLoad() {
@@ -32,13 +32,13 @@ export class LifeTimeClassicPage {
       this.navCtrl.setRoot(HomePage);
     });
   }
-  premiumEnter(value) {
-
+  premiumEnter(e) {
+    this.premiumInput = e.target.value;
     console.log(this.premiumInput);
     this.calSumAssured();
   }
   premiumSelect(value) {
-    // console.log(value);
+    console.log(value);
     this.premiumSelected = value;
     this.calSumAssured();
     this.calPremiumCharges(this.premiumSelected, this.payingTermSelected)
@@ -89,7 +89,8 @@ export class LifeTimeClassicPage {
 
   }
 
-  rateEnter(value) {
+  rateEnter(e) {
+    this.rateInput = e.target.value;
     console.log(this.rateInput);
   }
 
@@ -112,13 +113,49 @@ export class LifeTimeClassicPage {
 
   }
 
-  partialEnter(value) {
+  partialEnter(e) {
+    this.partialInput = e.target.value;
     console.log(this.partialInput);
   }
-  
+
 
   calculate() {
-    console.log("calculate")
+    if(this.premiumSelected == 12 && this.premiumInput < 16668){
+      let alert = this.alert.create({
+        subTitle: "Please Enter Premium above 16,668",
+        buttons: ['OK']
+      });
+      alert.present();
+
+      this.premiumInput ='';
+      return false;
+     }
+     if(this.premiumSelected == 2 && this.premiumInput < 100000){
+      let alert = this.alert.create({
+        subTitle: "Please Enter Premium above 1,00,000",
+        buttons: ['OK']
+      });
+      alert.present();
+
+      this.premiumInput ='';
+     return false;
+     
+    }
+    if(this.premiumSelected == 1 && this.premiumInput < 200000){
+      let alert = this.alert.create({
+        subTitle: "Please Enter Premium above 2,00,000",
+        buttons: ['OK']
+      });
+      alert.present();
+
+      this.premiumInput ='';
+       return false;   
+    }
+    
+    
+     
+    console.log("calculate");
+    console.log(this.premiumInput)
     var paying = [];
     var allocationCharges = [];
     var adminChargesCal = [];
@@ -129,10 +166,10 @@ export class LifeTimeClassicPage {
     //paying,partialWithdrawal
     for (var i = 0; i < this.payingTermSelected; i++) {
       paying.push(payingCal);
-   }
+    }
 
     //loyaltyAddition,partialWithdrawal
-    for(var l=0;l<5;l++){
+    for (var l = 0; l < 5; l++) {
       loyaltyAddition.push("N/A");
       partialWithdrawal.push("N/A");
     }
@@ -295,11 +332,8 @@ export class LifeTimeClassicPage {
     console.log(loyaltyAddition);
     console.log(this.wealthBooster);
     console.log(partialWithdrawal)
-    if(this.partialInput == undefined){
-      this.partialInput = 0;
-    }
-
-    if (allocationCharges.length > 0 && this.policyTermSelected !== undefined && this.rateInput !== undefined) {
+   
+    if (allocationCharges.length > 0 && this.premiumSelected !== 0 && this.policyTermSelected !== 0 && this.rateInput !== "" && this.rateInput !== 'undefined' && this.premiumInput !=="" && this.premiumInput !=='undefined') {
       this.lifeTimeClassic = {
         'payingTerm': this.payingTermSelected,
         'policyTerm': this.policyTermSelected,
@@ -309,19 +343,19 @@ export class LifeTimeClassicPage {
         "rateInput": this.rateInput,
         "sumAssured": this.sumAssured,
         "loyaltyAddition": loyaltyAddition,
-        "loyaltyInput":this.loyaltyAdditions,
+        "loyaltyInput": this.loyaltyAdditions,
         "wealthBooster": this.wealthBooster,
         "partialWithdrawal": partialWithdrawal,
-        "partialInput":this.partialInput
+        "partialInput": this.partialInput
       }
       this.navCtrl.push(BenifitOfIllustrationsPage, this.lifeTimeClassic);
     } else {
       let alert = this.alert.create({
-        subTitle: "Please Select the Premium Paying Term, Policy Term and Rate of Return",
+        subTitle: "Please Select the Premium, Premium Paying Term, Policy Term and Rate of Return",
         buttons: ['OK']
       });
       alert.present();
-      
+
     }
 
   }
