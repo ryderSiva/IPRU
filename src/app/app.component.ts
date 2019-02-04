@@ -63,4 +63,8 @@ export class MyApp {
   checkActivate(page){
      return page=this.activatePage;
   }
+
+  homeClick(){
+    this.nav.setRoot(HomePage);
+  }
 }
