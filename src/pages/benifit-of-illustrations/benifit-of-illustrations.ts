@@ -286,8 +286,8 @@ export class BenifitOfIllustrationsPage {
   }
   getPartial(fval) {
     var result = 0;
-
-    if (this.partialInput == 0) {
+    console.log(this.partialInput);
+    if (this.partialInput == undefined || this.partialInput == "") {
       result = 0;
       this.partialWithdrawal.push(result);
     } else {
