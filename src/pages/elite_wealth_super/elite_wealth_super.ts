@@ -36,7 +36,7 @@ export class EliteWealthSuperPage {
     this.calSumAssured();
   }
   premiumSelect(value) {
-    // console.log(value);
+    console.log(value);
     this.premiumSelected = value;
     this.calSumAssured();
     this.calPremiumCharges(this.premiumSelected, this.payingTermSelected)
@@ -118,6 +118,40 @@ export class EliteWealthSuperPage {
 
 
   calculate() {
+    if(this.premiumSelected == 12 && this.premiumInput < 16668){
+      let alert = this.alert.create({
+        subTitle: "Please Enter Premium above 16,668",
+        buttons: ['OK']
+      });
+      alert.present();
+
+      this.premiumInput ='';
+      return false;
+     }
+     if(this.premiumSelected == 2 && this.premiumInput < 100000){
+      let alert = this.alert.create({
+        subTitle: "Please Enter Premium above 1,00,000",
+        buttons: ['OK']
+      });
+      alert.present();
+
+      this.premiumInput ='';
+     return false;
+     
+    }
+    if(this.premiumSelected == 1 && this.premiumInput < 200000){
+      let alert = this.alert.create({
+        subTitle: "Please Enter Premium above 2,00,000",
+        buttons: ['OK']
+      });
+      alert.present();
+
+      this.premiumInput ='';
+       return false;   
+    }
+    
+    
+     
     console.log("calculate");
     console.log(this.premiumInput)
     var paying = [];
@@ -296,8 +330,9 @@ export class EliteWealthSuperPage {
     console.log(loyaltyAddition);
     console.log(this.wealthBooster);
     console.log(partialWithdrawal)
+    console.log(this.premiumSelected)
    
-    if (allocationCharges.length > 0 && this.premiumSelected !== 0 && this.policyTermSelected !== 0 && this.rateInput !== "" && this.rateInput !== 'undefined' && this.premiumInput !=="" && this.premiumInput !=='undefined') {
+    if (allocationCharges.length > 0 && this.premiumSelected !== undefined && this.policyTermSelected !== 0 && this.rateInput !== "" && this.rateInput !== undefined && this.premiumInput !=="" && this.premiumInput !==undefined) {
       this.lifeTimeClassic = {
         'payingTerm': this.payingTermSelected,
         'policyTerm': this.policyTermSelected,

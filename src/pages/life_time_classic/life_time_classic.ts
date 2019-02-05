@@ -120,40 +120,7 @@ export class LifeTimeClassicPage {
 
 
   calculate() {
-    if(this.premiumSelected == 12 && this.premiumInput < 16668){
-      let alert = this.alert.create({
-        subTitle: "Please Enter Premium above 16,668",
-        buttons: ['OK']
-      });
-      alert.present();
 
-      this.premiumInput ='';
-      return false;
-     }
-     if(this.premiumSelected == 2 && this.premiumInput < 100000){
-      let alert = this.alert.create({
-        subTitle: "Please Enter Premium above 1,00,000",
-        buttons: ['OK']
-      });
-      alert.present();
-
-      this.premiumInput ='';
-     return false;
-     
-    }
-    if(this.premiumSelected == 1 && this.premiumInput < 200000){
-      let alert = this.alert.create({
-        subTitle: "Please Enter Premium above 2,00,000",
-        buttons: ['OK']
-      });
-      alert.present();
-
-      this.premiumInput ='';
-       return false;   
-    }
-    
-    
-     
     console.log("calculate");
     console.log(this.premiumInput)
     var paying = [];

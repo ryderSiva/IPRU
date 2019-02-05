@@ -36,7 +36,7 @@ export class EliteLifeSuperPage {
     this.calSumAssured();
   }
   premiumSelect(value) {
-    // console.log(value);
+    console.log(value);
     this.premiumSelected = value;
     this.calSumAssured();
     this.calPremiumCharges(this.premiumSelected, this.payingTermSelected)
@@ -104,8 +104,10 @@ export class EliteLifeSuperPage {
 
   calLoyaltyAddition(value) {
     if (value == '5') {
-      this.loyaltyAdditions = "0.10%";
-    } else {
+      this.loyaltyAdditions = "6 & 7 (0.10%)  8>= (0.10%)";
+    } else if(value == 7){
+      this.loyaltyAdditions = "6 & 7 (0.20%)  8>= (0.35%)";
+    }else if(value == 10){
       this.loyaltyAdditions = "6 & 7 (0.15%)  8>= (0.30%)";
     }
 
@@ -118,6 +120,40 @@ export class EliteLifeSuperPage {
 
 
   calculate() {
+    if(this.premiumSelected == 12 && this.premiumInput < 16668){
+      let alert = this.alert.create({
+        subTitle: "Please Enter Premium above 16,668",
+        buttons: ['OK']
+      });
+      alert.present();
+
+      this.premiumInput ='';
+      return false;
+     }
+     if(this.premiumSelected == 2 && this.premiumInput < 100000){
+      let alert = this.alert.create({
+        subTitle: "Please Enter Premium above 1,00,000",
+        buttons: ['OK']
+      });
+      alert.present();
+
+      this.premiumInput ='';
+     return false;
+     
+    }
+    if(this.premiumSelected == 1 && this.premiumInput < 200000){
+      let alert = this.alert.create({
+        subTitle: "Please Enter Premium above 2,00,000",
+        buttons: ['OK']
+      });
+      alert.present();
+
+      this.premiumInput ='';
+       return false;   
+    }
+    
+    
+     
     console.log("calculate");
     console.log(this.premiumInput)
     var paying = [];
@@ -296,8 +332,9 @@ export class EliteLifeSuperPage {
     console.log(loyaltyAddition);
     console.log(this.wealthBooster);
     console.log(partialWithdrawal)
+    console.log(this.premiumSelected)
    
-    if (allocationCharges.length > 0 && this.premiumSelected !== 0 && this.policyTermSelected !== 0 && this.rateInput !== "" && this.rateInput !== 'undefined' && this.premiumInput !=="" && this.premiumInput !=='undefined') {
+    if (allocationCharges.length > 0 && this.premiumSelected !== undefined && this.policyTermSelected !== 0 && this.rateInput !== "" && this.rateInput !== undefined && this.premiumInput !=="" && this.premiumInput !==undefined) {
       this.lifeTimeClassic = {
         'payingTerm': this.payingTermSelected,
         'policyTerm': this.policyTermSelected,

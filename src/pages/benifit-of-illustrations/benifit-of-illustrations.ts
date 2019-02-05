@@ -252,11 +252,14 @@ export class BenifitOfIllustrationsPage {
     return result;
   }
   getLoyalty(cumulative, growthCal, index) {
+
     console.log("getLoyalty" + this.loyaltyInput);
     var loyal = 0;
+
     if (this.loyaltyInput == "0.10%") {
       loyal = 0.001;
-    } else {
+    }
+    else if(this.loyaltyInput == "6 & 7 (0.15%)  8>= (0.30%)"){
       if (index == 5 || index == 6) {
         loyal = 0.0015;
       } else {
@@ -264,6 +267,38 @@ export class BenifitOfIllustrationsPage {
       }
 
     }
+    else if(this.loyaltyInput == "6 & 7 (0.10%)  8>= (0.10%)"){
+      loyal = 0.001;
+    }
+    else if(this.loyaltyInput == "6 & 7 (0.20%)  8>= (0.35%)"){
+      if (index == 5 || index == 6) {
+        loyal = 0.002;
+      } else {
+        loyal = 0.0035;
+      }
+
+    }
+    else if(this.loyaltyInput == "6 & 7 (0.15%)  8>= (0.30%)"){
+      if (index == 5 || index == 6) {
+        loyal = 0.0015;
+      } else {
+        loyal = 0.003;
+      }
+
+    }
+   
+   
+    // if (this.loyaltyInput == "0.10%") {
+    //   loyal = 0.001;
+    // } else {
+    //   if (index == 5 || index == 6) {
+    //     loyal = 0.0015;
+    //   } else {
+    //     loyal = 0.003;
+    //   }
+
+    // }
+
     console.log(loyal)
     var result = 0;
     result = Math.round((cumulative + growthCal) * loyal);
