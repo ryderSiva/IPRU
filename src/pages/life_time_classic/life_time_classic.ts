@@ -332,8 +332,9 @@ export class LifeTimeClassicPage {
     console.log(loyaltyAddition);
     console.log(this.wealthBooster);
     console.log(partialWithdrawal)
+    console.log(this.premiumSelected)
    
-    if (allocationCharges.length > 0 && this.premiumSelected !== 0 && this.policyTermSelected !== 0 && this.rateInput !== "" && this.rateInput !== 'undefined' && this.premiumInput !=="" && this.premiumInput !=='undefined') {
+    if (allocationCharges.length > 0 && this.premiumSelected !== undefined && this.policyTermSelected !== 0 && this.rateInput !== "" && this.rateInput !== undefined && this.premiumInput !=="" && this.premiumInput !==undefined) {
       this.lifeTimeClassic = {
         'payingTerm': this.payingTermSelected,
         'policyTerm': this.policyTermSelected,
