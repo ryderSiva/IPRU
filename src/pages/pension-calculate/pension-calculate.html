@@ -1,0 +1,62 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-row>
+            <ion-col style="margin-top: 13px;background: white;
+            border: none;" col-10>
+            <span style="font-size:17px;">PENSION CALCULATION</span>
+    </ion-col>
+    <ion-col  style="background: white;border: none;" col-2 (click)="downloadPdf()">
+            
+            <ion-icon name="download" style="font-size: 2em;margin-left: 10px;"></ion-icon> <br>
+            <span>Export</span>
+    </ion-col>
+  
+  
+  
+    </ion-row>
+  
+  
+     
+    </ion-navbar>
+  
+  </ion-header>
+  <ion-content>
+    <ion-scroll direction="x" class="wide-as-needed">
+      <table  id="tableCont" >
+        <tr text-wrap style="background: #dddddd;color:black;">
+          <th style="border: 1px solid;">S.NO</th>
+          <th style="border: 1px solid;">MONTH</th>
+          <th style="border: 1px solid;">PENSION AMOUNT</th>
+         
+        </tr>
+        <tr  class="dynamicRow"  *ngFor="let pension of this.penionValues" style="font-size: initial;">
+          <td>
+            {{pension.serial}}
+          </td>
+          <td>
+            {{pension.month}}
+  
+          </td>
+          <td>
+            {{pension.pensionAmount}}
+  
+          </td>
+        </tr>
+
+              <tr style="color:black;font-weight: bold;
+              font-size: initial;border: 2px solid;">
+                <td colspan="2">
+                    Total
+                </td>
+                <td colspan="2" >
+                    {{this.pensionAmountTotal}}
+                  </td>
+  
+              </tr>
+  
+      </table>
+  
+  
+    </ion-scroll>
+  </ion-content>

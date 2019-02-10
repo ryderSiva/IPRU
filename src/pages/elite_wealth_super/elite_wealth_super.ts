@@ -13,17 +13,17 @@ export class EliteWealthSuperPage {
   payingTermSelected: any;
   isReadonly: boolean = true;
   premiumAllocationCharges: any;
-  adminCharges: any = "1-5(1.14%) Thereafter(2.40%)";
+  adminCharges: any = "6000";
   wealthBooster: any;
   policyTerm: any;
   loyaltyAdditions: any;
   lifeTimeClassic: any = [];
   policyTermSelected: any;
   rateInput: any;
-  partialInput:any;
-  
- 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform,public alert: AlertController) {
+  partialInput: any;
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public alert: AlertController) {
   }
   ionViewDidLoad() {
     this.platform.registerBackButtonAction(() => {
@@ -63,19 +63,19 @@ export class EliteWealthSuperPage {
   calPremiumCharges(premium = '', term = '') {
     if (premium == '12' || premium == '2') {
       if (term == '5') {
-        this.premiumAllocationCharges = "1 (6%)  2 - 3 (5%)  4 (4.5%)  5 (4%)";
+        this.premiumAllocationCharges = "1 (5%)  2(4%)  3-5(3.5%)";
       } else if (term == '7') {
-        this.premiumAllocationCharges = "1 (6%)  2 - 3 (5%)  4 (4.5%)  5 (4%)  6 - 7 (4%)";
+        this.premiumAllocationCharges = "1 (5%)  2(4%)  3-5(3.5%)  6 - 7 (3%)";
       } else if (term == '10') {
-        this.premiumAllocationCharges = "1 (6%)  2 - 3 (5%)  4 (4.5%)  5 (4%)  6 - 7 (4%)  7 > (2%)"
+        this.premiumAllocationCharges = "1 (5%)  2(4%)  3-5(3.5%)  6 - 7 (3%)  7 > (2%)"
       }
     } else {
       if (term == '5') {
-        this.premiumAllocationCharges = "6%";
+        this.premiumAllocationCharges = "4%";
       } else if (term == '7') {
-        this.premiumAllocationCharges = "1 - 5 (6%)  6 - 7 (4%)";
+        this.premiumAllocationCharges = "1 - 5 (4%)  6 - 7 (3%)";
       } else if (term == '10') {
-        this.premiumAllocationCharges = "1 - 5 (6%)  6 - 7 (4%)  7 > (2%)"
+        this.premiumAllocationCharges = "1 - 5 (4%)  6 - 7 (3%)  7 > (2%)"
       }
     }
   }
@@ -106,7 +106,7 @@ export class EliteWealthSuperPage {
     if (value == '5') {
       this.loyaltyAdditions = "0.10%";
     } else {
-      this.loyaltyAdditions = "6 & 7 (0.15%)  8>= (0.30%)";
+      this.loyaltyAdditions = "6 & 7 (0.25%)  8>= (0.40%)";
     }
 
   }
@@ -118,40 +118,41 @@ export class EliteWealthSuperPage {
 
 
   calculate() {
-    if(this.premiumSelected == 12 && this.premiumInput < 16668){
+
+    if (this.premiumSelected == 12 && this.premiumInput < 50000 - 1) {
       let alert = this.alert.create({
-        subTitle: "Please Enter Premium above 16,668",
+        subTitle: "Please Enter Premium above or equal 50000",
         buttons: ['OK']
       });
       alert.present();
 
-      this.premiumInput ='';
+      this.premiumInput = '';
       return false;
-     }
-     if(this.premiumSelected == 2 && this.premiumInput < 100000){
+    }
+    if (this.premiumSelected == 2 && this.premiumInput < 300000 - 1) {
       let alert = this.alert.create({
-        subTitle: "Please Enter Premium above 1,00,000",
+        subTitle: "Please Enter Premium above or equal 3,00,000",
         buttons: ['OK']
       });
       alert.present();
 
-      this.premiumInput ='';
-     return false;
-     
+      this.premiumInput = '';
+      return false;
+
     }
-    if(this.premiumSelected == 1 && this.premiumInput < 200000){
+    if (this.premiumSelected == 1 && this.premiumInput < 600000 - 1) {
       let alert = this.alert.create({
-        subTitle: "Please Enter Premium above 2,00,000",
+        subTitle: "Please Enter Premium above or equal 6,00,000",
         buttons: ['OK']
       });
       alert.present();
 
-      this.premiumInput ='';
-       return false;   
+      this.premiumInput = '';
+      return false;
     }
-    
-    
-     
+
+
+
     console.log("calculate");
     console.log(this.premiumInput)
     var paying = [];
@@ -173,41 +174,41 @@ export class EliteWealthSuperPage {
     }
 
     //allocationCharges
-    if (this.premiumAllocationCharges == "6%") {
+    if (this.premiumAllocationCharges == "4%") {
       allocationCharges = [];
       console.log("premiumAllocationCharges" + this.premiumAllocationCharges)
-      var allocationChargesCal = Math.round(payingCal * 0.06);
+      var allocationChargesCal = Math.round(payingCal * 0.04);
       for (var a = 0; a < this.payingTermSelected; a++) {
         allocationCharges.push(allocationChargesCal);
       }
     }
 
-    if (this.premiumAllocationCharges == "1 - 5 (6%)  6 - 7 (4%)") {
+    if (this.premiumAllocationCharges == "1 - 5 (4%)  6 - 7 (3%)") {
       console.log("premiumAllocationCharges" + this.premiumAllocationCharges)
       allocationCharges = [];
       for (var b = 0; b < this.payingTermSelected; b++) {
         if (b < 5) {
-          var allocationChargesCal = Math.round(payingCal * 0.06);
+          var allocationChargesCal = Math.round(payingCal * 0.04);
           allocationCharges.push(allocationChargesCal);
         }
         else if (b >= 5) {
-          var allocationChargesCal = Math.round(payingCal * 0.04);
+          var allocationChargesCal = Math.round(payingCal * 0.3);
           allocationCharges.push(allocationChargesCal);
 
         }
       }
     }
 
-    if (this.premiumAllocationCharges == "1 - 5 (6%)  6 - 7 (4%)  7 > (2%)") {
+    if (this.premiumAllocationCharges == "1 - 5 (4%)  6 - 7 (3%)  7 > (2%)") {
       console.log("premiumAllocationCharges" + this.premiumAllocationCharges)
       allocationCharges = [];
       for (var b = 0; b < this.payingTermSelected; b++) {
         if (b < 5) {
-          var allocationChargesCal = Math.round(payingCal * 0.06);
+          var allocationChargesCal = Math.round(payingCal * 0.04);
           allocationCharges.push(allocationChargesCal);
         }
         else if (b >= 5 && b < 7) {
-          var allocationChargesCal = Math.round(payingCal * 0.04);
+          var allocationChargesCal = Math.round(payingCal * 0.03);
           allocationCharges.push(allocationChargesCal);
 
         }
@@ -220,54 +221,48 @@ export class EliteWealthSuperPage {
       }
     }
 
-    if (this.premiumAllocationCharges == "1 (6%)  2 - 3 (5%)  4 (4.5%)  5 (4%)") {
+    if (this.premiumAllocationCharges == "1 (5%)  2(4%)  3-5(3.5%)") {
       console.log("premiumAllocationCharges" + this.premiumAllocationCharges)
       allocationCharges = [];
       for (var c = 0; c < this.payingTermSelected; c++) {
         if (c == 0) {
-          var allocationChargesCal = Math.round(payingCal * 0.06);
-          allocationCharges.push(allocationChargesCal);
-        }
-        else if (c == 1 || c == 2) {
           var allocationChargesCal = Math.round(payingCal * 0.05);
           allocationCharges.push(allocationChargesCal);
-
         }
-        else if (c == 3) {
-          var allocationChargesCal = Math.round(payingCal * 0.045);
-          allocationCharges.push(allocationChargesCal);
-
-        }
-        else if (c == 4) {
+        else if (c == 1) {
           var allocationChargesCal = Math.round(payingCal * 0.04);
           allocationCharges.push(allocationChargesCal);
 
         }
+        else if (c == 2 || c == 3 || c == 4) {
+          var allocationChargesCal = Math.round(payingCal * 0.035);
+          allocationCharges.push(allocationChargesCal);
 
+        }
 
       }
     }
 
-    if (this.premiumAllocationCharges == "1 (6%)  2 - 3 (5%)  4 (4.5%)  5 (4%)  6 - 7 (4%)") {
+    if (this.premiumAllocationCharges == "1 (5%)  2(4%)  3-5(3.5%)  6 - 7 (3%)") {
       console.log("premiumAllocationCharges" + this.premiumAllocationCharges)
       allocationCharges = [];
       for (var d = 0; d < this.payingTermSelected; d++) {
         if (d == 0) {
-          var allocationChargesCal = Math.round(payingCal * 0.06);
-          allocationCharges.push(allocationChargesCal);
-        }
-        else if (d == 1 || d == 2) {
           var allocationChargesCal = Math.round(payingCal * 0.05);
           allocationCharges.push(allocationChargesCal);
-
         }
-        else if (d == 3) {
-          var allocationChargesCal = Math.round(payingCal * 0.045);
+        else if (d == 1) {
+          var allocationChargesCal = Math.round(payingCal * 0.04);
           allocationCharges.push(allocationChargesCal);
 
         }
-        else if (d > 3) {
-          var allocationChargesCal = Math.round(payingCal * 0.04);
+        else if (d == 2 || d == 3 || d == 4) {
+          var allocationChargesCal = Math.round(payingCal * 0.035);
+          allocationCharges.push(allocationChargesCal);
+
+        }
+        else if (d == 5 || d == 6) {
+          var allocationChargesCal = Math.round(payingCal * 0.03);
           allocationCharges.push(allocationChargesCal);
 
         }
@@ -275,26 +270,26 @@ export class EliteWealthSuperPage {
       }
     }
 
-    if (this.premiumAllocationCharges == "1 (6%)  2 - 3 (5%)  4 (4.5%)  5 (4%)  6 - 7 (4%)  7 > (2%)") {
+    if (this.premiumAllocationCharges == "1 (5%)  2(4%)  3-5(3.5%)  6 - 7 (3%)  7 > (2%)") {
       console.log("premiumAllocationCharges" + this.premiumAllocationCharges)
       allocationCharges = [];
       for (var e = 0; e < this.payingTermSelected; e++) {
         if (e == 0) {
-          var allocationChargesCal = Math.round(payingCal * 0.06);
-          allocationCharges.push(allocationChargesCal);
-        }
-        else if (e == 1 || e == 2) {
           var allocationChargesCal = Math.round(payingCal * 0.05);
           allocationCharges.push(allocationChargesCal);
-
         }
-        else if (e == 3) {
-          var allocationChargesCal = Math.round(payingCal * 0.045);
+        else if (e == 1) {
+          var allocationChargesCal = Math.round(payingCal * 0.04);
           allocationCharges.push(allocationChargesCal);
 
         }
-        else if (e > 3 && e < 7) {
-          var allocationChargesCal = Math.round(payingCal * 0.04);
+        else if (e == 2 || e == 3 || e == 4) {
+          var allocationChargesCal = Math.round(payingCal * 0.035);
+          allocationCharges.push(allocationChargesCal);
+
+        }
+        else if (e == 5 || e == 6) {
+          var allocationChargesCal = Math.round(payingCal * 0.03);
           allocationCharges.push(allocationChargesCal);
 
         }
@@ -310,13 +305,9 @@ export class EliteWealthSuperPage {
 
     //adminCharges
     for (var f = 0; f < this.policyTermSelected; f++) {
-      if (f < 5) {
-        var acharges = Math.round(payingCal * 0.0114);
-        adminChargesCal.push(acharges);
-      } else {
-        var acharges = Math.round(payingCal * 0.024);
-        adminChargesCal.push(acharges);
-      }
+      var acharges = 6000;
+      adminChargesCal.push(acharges);
+
     }
 
     console.log("payingTermSelected" + this.payingTermSelected);
@@ -331,8 +322,8 @@ export class EliteWealthSuperPage {
     console.log(this.wealthBooster);
     console.log(partialWithdrawal)
     console.log(this.premiumSelected)
-   
-    if (allocationCharges.length > 0 && this.premiumSelected !== undefined && this.policyTermSelected !== 0 && this.rateInput !== "" && this.rateInput !== undefined && this.premiumInput !=="" && this.premiumInput !==undefined) {
+
+    if (allocationCharges.length > 0 && this.premiumSelected !== undefined && this.policyTermSelected !== 0 && this.rateInput !== "" && this.rateInput !== undefined && this.premiumInput !== "" && this.premiumInput !== undefined) {
       this.lifeTimeClassic = {
         'payingTerm': this.payingTermSelected,
         'policyTerm': this.policyTermSelected,

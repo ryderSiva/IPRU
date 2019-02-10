@@ -284,7 +284,13 @@ export class BenifitOfIllustrationsPage {
       } else {
         loyal = 0.003;
       }
-
+    }
+    else if(this.loyaltyInput == "6 & 7 (0.25%)  8>= (0.40%)"){
+      if (index == 5 || index == 6) {
+        loyal = 0.0025;
+      } else {
+        loyal = 0.004;
+      }
     }
    
    

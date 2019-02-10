@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Calculate</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding style="background: -webkit-linear-gradient(left, #ae2b30 0%,#f26522 100%);
+  background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);">
+      <ion-grid style="color: white;font-size: 15px">      
+  
+  
+          <ion-row>
+            <ion-col col-12>
+                  <h4 >Pension Amount</h4>
+                  <ion-input style="outline: auto;" [(ngModel)]="pensionAmount" (input)="pensionEnter($event)"></ion-input>
+            </ion-col>
+            
+          </ion-row>
+  
+            
+        </ion-grid>
+        <button style="color: white;border-color:white;width: 49%;margin-left: 88px;border-right-width: 1px;border-left-width: 1px;margin-top: 22px;" ion-button full outline (click)="calculate()">Calculate</button>
+        
+  
+  </ion-content>
+  

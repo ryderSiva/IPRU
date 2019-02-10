@@ -13,6 +13,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { File } from '@ionic-native/file'
 import { FileOpener } from '@ionic-native/file-opener'
+import { CalculatorPage } from '../pages/calculator/calculator';
+import { PensionCalculatePage } from '../pages/pension-calculate/pension-calculate';
+import { IRRCalculatePage } from '../pages/irr-calculate/irr-calculate';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -21,6 +26,9 @@ import { FileOpener } from '@ionic-native/file-opener'
     EliteLifeSuperPage,
     EliteWealthSuperPage,
     BenifitOfIllustrationsPage,
+    CalculatorPage,
+    PensionCalculatePage,
+    IRRCalculatePage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +42,9 @@ import { FileOpener } from '@ionic-native/file-opener'
     EliteLifeSuperPage,
     EliteWealthSuperPage,
     BenifitOfIllustrationsPage,
-  
+    CalculatorPage,
+    PensionCalculatePage,
+    IRRCalculatePage
   ],
   providers: [
     StatusBar,
