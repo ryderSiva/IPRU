@@ -16,6 +16,7 @@ import { FileOpener } from '@ionic-native/file-opener'
 import { CalculatorPage } from '../pages/calculator/calculator';
 import { PensionCalculatePage } from '../pages/pension-calculate/pension-calculate';
 import { IRRCalculatePage } from '../pages/irr-calculate/irr-calculate';
+import { IRRCalculateReportPage } from '../pages/irr-calculations-report/irr-calculations-report';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { IRRCalculatePage } from '../pages/irr-calculate/irr-calculate';
     BenifitOfIllustrationsPage,
     CalculatorPage,
     PensionCalculatePage,
-    IRRCalculatePage
+    IRRCalculatePage,
+    IRRCalculateReportPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { IRRCalculatePage } from '../pages/irr-calculate/irr-calculate';
     BenifitOfIllustrationsPage,
     CalculatorPage,
     PensionCalculatePage,
-    IRRCalculatePage
+    IRRCalculatePage,
+    IRRCalculateReportPage
   ],
   providers: [
     StatusBar,

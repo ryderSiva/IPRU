@@ -16,7 +16,7 @@
                             <ion-col col-12>
                                 <h4>From</h4>
                                 <ion-select style="outline: auto;max-width: 200%;width: 309px;padding: 10px 8px 15px 16px;" (ionChange)="fromSelect($event)" [(ngModel)]="fromYear">
-                                        <ion-option *ngFor="let years of this.years"  >{{years}}</ion-option>
+                                        <ion-option *ngFor="let years of this.selectedFrom"  >{{years}}</ion-option>
 
                                </ion-select>
                                 <!-- <ion-input style="outline: auto;width: 212px;"></ion-input> -->
@@ -28,13 +28,32 @@
                 
                     <ion-col col-12>
                         <h4>To</h4>
-                        <ion-select style="outline: auto;max-width: 200%;width: 309px;padding: 10px 8px 15px 16px;" (ionChange)="toSelect($event)" [(ngModel)]="toYear">
-                                <ion-option *ngFor="let years of this.years"  >{{years}}</ion-option>
+                        <ion-select  disabled ="{{isReadonly}}"  style="outline: auto;max-width: 200%;width: 309px;padding: 10px 8px 15px 16px;" (ionChange)="toSelect($event)" [(ngModel)]="toYear">
+                                <ion-option *ngFor="let years of this.selectedTo"  >{{years}}</ion-option>
                        </ion-select>
                         <!-- <ion-input style="outline: auto;width: 212px;"></ion-input> -->
                     </ion-col>
         
       </ion-row>
+
+      <ion-row>
+                
+        <ion-col col-12>
+            <h4>Premium</h4>
+            <ion-input style="outline: auto;" type="number" [(ngModel)]="premiumInput" (input)="premiumEnter($event)"></ion-input>
+        </ion-col>
+
+</ion-row>
+
+<ion-row>
+                
+  <ion-col col-12>
+      <h4>Paid</h4>
+      <ion-input style="outline: auto;"    min="1" max="30" type="number" [(ngModel)]="paidInput" (input)="paidEnter($event)"></ion-input>
+  </ion-col>
+
+</ion-row>
+
       
                 
             </ion-grid>

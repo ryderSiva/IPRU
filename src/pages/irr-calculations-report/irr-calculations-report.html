@@ -1,0 +1,64 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-row>
+            <ion-col style="margin-top: 13px;background: white;
+            border: none;" col-10>
+            <span style="font-size:17px;">IRR CALCULATION</span>
+    </ion-col>
+    <ion-col  style="background: white;border: none;" col-2 (click)="downloadPdf()">
+            
+            <ion-icon name="download" style="font-size: 2em;margin-left: 10px;"></ion-icon> <br>
+            <span>Export</span>
+    </ion-col>
+  
+  
+  
+    </ion-row>
+  
+  
+     
+    </ion-navbar>
+  
+  </ion-header>
+  <ion-content style="background: -webkit-linear-gradient(left, #ae2b30 0%,#f26522 100%);
+  background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);">
+    <ion-scroll direction="x" class="wide-as-needed">
+      <table  id="tableCont" >
+        <tr text-wrap style="background: -webkit-linear-gradient(left, #ae2b30 0%,#f26522 100%);
+        background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);color:white;height: 50px;">
+          <th style="border: 1px solid;">YEAR</th>
+          <th style="border: 1px solid;">PENSION AMOUNT</th>
+          
+         
+        </tr>
+        <!-- <tr  class="dynamicRow"  *ngFor="let pension of this.penionValues" style="font-size: initial;">
+          <td>
+            {{pension.serial}}
+          </td>
+          <td>
+            {{pension.month}}
+  
+          </td>
+          <td>
+            {{pension.pensionAmount}}
+  
+          </td>
+        </tr> -->
+
+              <!-- <tr style="color:black;font-weight: bold;
+              font-size: initial;border: 2px solid;">
+                <td colspan="2">
+                    Total
+                </td>
+                <td colspan="2" >
+                    {{this.pensionAmountTotal}}
+                  </td>
+  
+              </tr> -->
+  
+      </table>
+  
+  
+    </ion-scroll>
+  </ion-content>
