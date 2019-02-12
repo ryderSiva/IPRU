@@ -39,8 +39,8 @@ page-irrcalcul-report{
         padding: 8px;
       }
       
-      tr:nth-child(odd).dynamicRow{
-          background: #dddddd;
+      tr:nth-child(even).dynamicRow{
+         // background: white;
        // background: -webkit-linear-gradient(left, #ae2b30 0%,#f26522 100%);
 //background: linear-gradient(to right, #ae2b30 0%,#f26522 100%);;
       }
