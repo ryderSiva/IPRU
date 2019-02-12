@@ -65,23 +65,48 @@ export class IRRCalculatePage {
 
     alertOpen() {
         let alert = this.alert.create({
-            subTitle: "Please Enter Premium above or equal 50000",
+            subTitle: "Please Enter Premium,Paid & Select From Year, To year",
             buttons: ['OK']
         });
         alert.present();
     }
 
     calculate(){
+        if(this.premiumInput && this.paidInput && this.fromYear && this.toYear){
         var selectVal = [];
+        var irrcalaculations=[];
         for(var i=0;i<this.selectedFrom.length;i++){
             var fidx = this.selectedFrom.indexOf(this.fromYear);
             var tidx = this.selectedFrom.indexOf(this.toYear);
-            if(fidx < i && i < tidx){
+            if(fidx <= i && i <= tidx){
                 selectVal.push(this.selectedFrom[i]);
             }
         }
-        console.log(selectVal);
 
-        this.nav.push(IRRCalculateReportPage)
+        for(var j=0; j < selectVal.length;j++){
+            if(this.paidInput>j){
+                var objJson={
+                    year:selectVal[j],
+                    amount:"-"+this.premiumInput
+                }
+                irrcalaculations.push(objJson);
+            }else{
+                var objJson1={
+                    year:selectVal[j],
+                    amount:0
+                }
+                irrcalaculations.push(objJson1);
+            }
+        }
+        console.log(selectVal);
+        console.log(irrcalaculations);
+       
+        var obj={'irrCal':irrcalaculations};
+        this.nav.push(IRRCalculateReportPage, obj);
+            
+    }else{
+        this.alertOpen();
+    }
+        
     }
 }

@@ -32,6 +32,17 @@
           
          
         </tr>
+        <tr  class="dynamicRow"  *ngFor="let irr of this.irrCal" style="font-size: initial;">
+          <td>
+            {{irr.year}}
+          </td>
+          <td>
+            {{irr.amount}}
+  
+          </td>
+          
+        </tr>
+
         <!-- <tr  class="dynamicRow"  *ngFor="let pension of this.penionValues" style="font-size: initial;">
           <td>
             {{pension.serial}}
