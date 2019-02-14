@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, Platform, NavParams, AlertController } from 'ionic-angular';
 import { IRRCalculateReportPage } from '../../pages/irr-calculations-report/irr-calculations-report';
 
+
 @Component({
     selector: 'page-irrcalcul',
     templateUrl: 'irr-calculate.html'
@@ -14,7 +15,10 @@ export class IRRCalculatePage {
     premiumInput:any;
     paidInput:any;
     isReadonly: boolean = true;
+    capitalInput:any;
     constructor(public alert: AlertController,public nav:NavController) {
+        
+        
         this.selectedFrom = ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011',
             '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023',
             '2024', '2025', '2026', '2027', '2028', '2029', '2030'];
@@ -63,6 +67,10 @@ export class IRRCalculatePage {
         this.paidInput=e.target.value;
     }
 
+    capitalEnter(e){
+        this.capitalInput=e.target.value;
+    }
+
     alertOpen() {
         let alert = this.alert.create({
             subTitle: "Please Enter Premium,Paid & Select From Year, To year",
@@ -72,7 +80,7 @@ export class IRRCalculatePage {
     }
 
     calculate(){
-        if(this.premiumInput && this.paidInput && this.fromYear && this.toYear){
+        if(this.premiumInput && this.paidInput && this.fromYear && this.toYear && this.capitalInput){
         var selectVal = [];
         var irrcalaculations=[];
         for(var i=0;i<this.selectedFrom.length;i++){
@@ -91,11 +99,20 @@ export class IRRCalculatePage {
                 }
                 irrcalaculations.push(objJson);
             }else{
-                var objJson1={
-                    year:selectVal[j],
-                    amount:0
+                if(j==selectVal.length-1){
+                    var objJson1={
+                        year:selectVal[j],
+                        amount:this.capitalInput
+                    }
+                    irrcalaculations.push(objJson1);
+                }else{
+                    var objJson2={
+                        year:selectVal[j],
+                        amount:0
+                    }
+                    irrcalaculations.push(objJson2);
                 }
-                irrcalaculations.push(objJson1);
+                
             }
         }
         console.log(selectVal);
